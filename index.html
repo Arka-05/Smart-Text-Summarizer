@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Revision Summarizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Smart Revision Summarizer</div>
+  </nav>
+
+  <main class="container">
+    <section class="card input-card">
+      <h2>Paste your notes</h2>
+
+      <textarea id="inputText" placeholder="Paste long text here..."></textarea>
+
+      <div class="controls">
+        <label for="summaryLength">Summary length:</label>
+        <select id="summaryLength">
+          <option value="short">Short</option>
+          <option value="medium" selected>Medium</option>
+          <option value="long">Detailed</option>
+        </select>
+
+        <button id="summarizeBtn">Summarize</button>
+      </div>
+
+      <!-- PDF upload -->
+      <div class="controls" style="margin-top: 8px;">
+        <label for="pdfInput">Or upload PDF:</label>
+        <input type="file" id="pdfInput" accept="application/pdf" />
+        <span id="pdfStatus" class="hint"></span>
+      </div>
+
+      <p class="hint">
+        Tip: Upload a PDF with text or paste your notes, then click Summarize for quick revision.
+      </p>
+    </section>
+
+    <section class="card output-card">
+      <h2>Summary & Reading Time</h2>
+
+      <div class="reading-time">
+        <p>Original: <span id="originalTime">0</span> min</p>
+        <p>Summary: <span id="summaryTime">0</span> min</p>
+      </div>
+
+      <ul id="summaryList" class="summary-list">
+        <!-- Bullet points will appear here -->
+      </ul>
+
+      <div class="output-actions">
+        <button id="copyBtn">Copy bullets</button>
+        <p id="copyStatus" class="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Built for students to revise faster – demo project.
+  </footer>
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js"></script>
+
+  <!-- Your app logic -->
+  <script src="script.js"></script>
+</body>
+</html>
