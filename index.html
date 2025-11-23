@@ -2,71 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Smart Revision Summarizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Summarizer</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">Smart Revision Summarizer</div>
+  <nav class="navbar glass">
+    <div class="logo">📝<span>Smart Text Summarizer</span></div>
+    <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">🌞</button>
   </nav>
 
   <main class="container">
-    <section class="card input-card">
-      <h2>Paste your notes</h2>
+    <section class="card input-card glass">
+      <h2 class="headline">Summarize Notes & Documents</h2>
+      <p class="desc">Paste your notes or upload PDF/DOCX files to create summaries instantly.</p>
 
-      <textarea id="inputText" placeholder="Paste long text here..."></textarea>
+      <label class="file-label">
+        <span>Your Notes / Upload (PDF, DOCX)</span>
+        <textarea id="inputText" placeholder="Paste your notes here..." rows="7"></textarea>
+        <input type="file" id="fileInput" accept=".pdf,.docx" />
+        <span class="file-text" id="fileText">(No file selected)</span>
+      </label>
+    </section>
 
+    <section class="card output-card glass">
+      <h2 class="headline">Summary Output</h2>
+      <div class="reading-time">
+        <span>Original: <strong id="originalTime">0</strong> min</span>
+        <span>Summary: <strong id="summaryTime">0</strong> min</span>
+      </div>
       <div class="controls">
-        <label for="summaryLength">Summary length:</label>
+        <label for="summaryLength">Length:</label>
         <select id="summaryLength">
           <option value="short">Short</option>
           <option value="medium" selected>Medium</option>
           <option value="long">Detailed</option>
+          <option value="points">Main Points</option>
         </select>
-
-        <button id="summarizeBtn">Summarize</button>
+        <button id="summarizeBtn" class="btn">Summarize</button>
       </div>
 
-      <!-- PDF upload -->
-      <div class="controls" style="margin-top: 8px;">
-        <label for="pdfInput">Or upload PDF:</label>
-        <input type="file" id="pdfInput" accept="application/pdf" />
-        <span id="pdfStatus" class="hint"></span>
+      <div class="color-picker-container">
+        <div class="color-swatch red" data-theme="theme-red" title="Red"></div>
+        <div class="color-swatch green" data-theme="theme-green" title="Green"></div>
+        <div class="color-swatch purple" data-theme="theme-purple" title="Purple"></div>
+        <div class="color-swatch blue active" data-theme="" title="Default Blue"></div>
       </div>
 
-      <p class="hint">
-        Tip: Upload a PDF with text or paste your notes, then click Summarize for quick revision.
-      </p>
-    </section>
-
-    <section class="card output-card">
-      <h2>Summary & Reading Time</h2>
-
-      <div class="reading-time">
-        <p>Original: <span id="originalTime">0</span> min</p>
-        <p>Summary: <span id="summaryTime">0</span> min</p>
-      </div>
-
-      <ul id="summaryList" class="summary-list">
-        <!-- Bullet points will appear here -->
-      </ul>
-
+      <div id="loadingSpinner" class="spinner hidden"></div>
+      <ul id="summaryList"></ul>
       <div class="output-actions">
-        <button id="copyBtn">Copy bullets</button>
-        <p id="copyStatus" class="status"></p>
+        <button id="copyBtn" class="btn btn-small">Copy All</button>
+        <span id="copyStatus" class="status"></span>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    Built for students to revise faster – demo project.
+  <footer class="footer glass">
+    <span>Smart Revision Tool — built for students and learners</span>
   </footer>
 
-  <!-- PDF.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js"></script>
-
-  <!-- Your app logic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mammoth/mammoth.browser.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
